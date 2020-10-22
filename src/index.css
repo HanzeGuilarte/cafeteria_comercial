@@ -1,12 +1,14 @@
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .scroll-btn {
   position: fixed;
   right: 1.5rem;
   top: 5rem;
-  background-color: #8675a9;
+  background-color: #394867;
   color: aliceblue;
   z-index: 100;
   opacity: 0.8;
@@ -16,10 +18,30 @@ body {
   padding: 0.3rem 0.5rem;
   cursor: pointer;
   border-radius: 25%;
+  outline: none;
 }
 
 .scroll-btn:hover {
-  background: #6a097d;
+  background: #14274e;
   opacity: 1;
   font-size: 2.2rem;
+  outline: none;
+}
+
+.hero {
+  min-height: calc(65vh);
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(255, 255, 255, 0.1)
+    ),
+    url("./assets/food2.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #c02c03;
+}
+
+.banner {
+  width: auto;
 }

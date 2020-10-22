@@ -77,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    background: "#14274e",
   },
   drawerClose: {
     transition: theme.transitions.create("width", {
@@ -88,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
+    background: "#14274e",
   },
   toolbar: {
     display: "flex",
@@ -111,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
   },
   principalItem: {
     "&:hover": {
-      background: "#f5f5f5",
+      background: "#9ba4b4",
     },
   },
 }));
@@ -201,6 +203,7 @@ export default function Maqueta(props) {
 
       <Drawer
         variant="permanent"
+        color="primary"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
@@ -297,7 +300,7 @@ export default function Maqueta(props) {
                 component="a"
                 href="/ipv"
                 button
-                className={classes.nested}
+                className={`${classes.nested} ${classes.principalItem}`}
               >
                 <ListItemIcon>
                   <StarBorder color="secondary" fontSize="small" />
@@ -309,7 +312,7 @@ export default function Maqueta(props) {
 
               <ListItem
                 button
-                className={classes.nested}
+                className={`${classes.nested} ${classes.principalItem}`}
                 component="a"
                 href="/salario"
               >
@@ -323,7 +326,7 @@ export default function Maqueta(props) {
 
               <ListItem
                 button
-                className={classes.nested}
+                className={`${classes.nested} ${classes.principalItem}`}
                 component="a"
                 href="/analisis"
               >

@@ -22,6 +22,18 @@ const currencies = [
   },
 ];
 
+const unidades = [
+  {
+    value: "lb",
+  },
+  {
+    value: "Kg",
+  },
+  {
+    value: "litro",
+  },
+];
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -30,15 +42,26 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "8px solid #726a95",
+    border: "8px solid #14274e",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     margin: theme.spacing(1),
+    outline: "none",
   },
   textField: {
     margin: "20px",
     alignItems: "center",
     justifyContent: "center",
+  },
+  buttonField: {
+    margin: "20px",
+    justifyContent: "center",
+    paddingLeft: "25%",
+  },
+  typoField: {
+    margin: "20px",
+    justifyContent: "center",
+    paddingLeft: "20%",
   },
 }));
 
@@ -50,11 +73,15 @@ export default function TransitionsModal() {
   );
 
   const [currency, setCurrency] = React.useState("Primitivo");
+  const [unidadM, setUnidadM] = React.useState("Kg");
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
 
+  const handleUnidad = (event) => {
+    setUnidadM(event.target.value);
+  };
   console.log(openModal);
 
   return (
@@ -77,7 +104,11 @@ export default function TransitionsModal() {
         <Fade in={openModal}>
           <div className={classes.paper}>
             {/* Text */}
-            <Typography variant="h4" color="initial">
+            <Typography
+              className={classes.typoField}
+              variant="h4"
+              color="initial"
+            >
               Crear Producto
             </Typography>
             {/*tipo */}
@@ -90,7 +121,7 @@ export default function TransitionsModal() {
                 onChange={handleChange}
                 variant="outlined"
                 size="small"
-                fullWidth="true"
+                fullWidth
               >
                 {currencies.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -124,11 +155,30 @@ export default function TransitionsModal() {
             <div className={classes.textField}>
               <TextField
                 id="peso"
-                label="Peso"
+                label="Contenido Neto"
                 variant="outlined"
                 size="small"
-                placeholder="Lb"
               />
+            </div>
+
+            {/* Unidad */}
+            <div className={classes.textField}>
+              <TextField
+                id="unidad"
+                select
+                label="Unidad"
+                value={unidadM}
+                onChange={handleUnidad}
+                variant="outlined"
+                size="small"
+                fullWidth
+              >
+                {unidades.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.value}
+                  </MenuItem>
+                ))}
+              </TextField>
             </div>
 
             {/*Descripcion*/}
@@ -141,12 +191,12 @@ export default function TransitionsModal() {
                 rowsMax={4}
                 variant="outlined"
                 size="small"
-                fullWidth="true"
+                fullWidth
               />
             </div>
 
             {/*Descripcion*/}
-            <div className={classes.textField}>
+            <div className={classes.buttonField}>
               <Button variant="contained" color="primary">
                 Crear
               </Button>
