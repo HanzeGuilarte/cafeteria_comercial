@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
@@ -12,10 +12,8 @@ import {
   IconButton,
   ListItem,
   ListItemIcon,
-  ListItemText,
   CssBaseline,
   Collapse,
-  Box,
   Menu,
   MenuItem,
 } from "@material-ui/core";
@@ -23,8 +21,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import KitchenIcon from "@material-ui/icons/Kitchen";
@@ -35,7 +32,6 @@ import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
- 
 
 const drawerWidth = 240;
 
@@ -122,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Maqueta(props) {
   //Variables
-  const history = useHistory();
+
   const { children } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -133,10 +129,6 @@ export default function Maqueta(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   //Funciones
-
-  const redirectPage = () => {
-    history.push("/almacen");
-  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

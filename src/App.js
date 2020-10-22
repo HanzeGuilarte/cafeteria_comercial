@@ -30,35 +30,35 @@ function App() {
   return (
     <>
       <>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Switch>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
             <Switch>
-              <Route exact path="/" component={LoginPage} />
-              <Maqueta>
-                <Switch>
-                  <Route exact path="/home" component={HomePage} />
-                  <Route exact path="/almacen" component={AlmacenPage} />
-                  <Route
-                    exact
-                    path="/elaboracion"
-                    component={ElaboracionPage}
-                  />
-                  <Route exact path="/ipv" component={IpvPage} />
-                  <Route exact path="/producto" component={ProductPage} />
-                  <Route exact path="/salario" component={SalarioPage} />
-                  <Route exact path="/trazas" component={TrazasPage} />
-                  <Route exact path="/usuario" component={UsuarioPage} />
-                  <Route exact path="/analisis" component={AnalisisPage} />
-                  <Route exact path="/ventas" component={VentasPage} />
-                  <Route exact path="/error" component={Error} />
-                </Switch>
-              </Maqueta>
+              <Switch>
+                <Route exact path="/" component={LoginPage} />
+                <Maqueta>
+                  <Switch>
+                    <Route exact path="/home" component={HomePage} />
+                    <Route exact path="/almacen" component={AlmacenPage} />
+                    <Route
+                      exact
+                      path="/elaboracion"
+                      component={ElaboracionPage}
+                    />
+                    <Route exact path="/ipv" component={IpvPage} />
+                    <Route exact path="/producto" component={ProductPage} />
+                    <Route exact path="/salario" component={SalarioPage} />
+                    <Route exact path="/trazas" component={TrazasPage} />
+                    <Route exact path="/usuario" component={UsuarioPage} />
+                    <Route exact path="/analisis" component={AnalisisPage} />
+                    <Route exact path="/ventas" component={VentasPage} />
+                    <Route exact path="/error" component={Error} />
+                  </Switch>
+                </Maqueta>
+              </Switch>
             </Switch>
-          </Switch>
-        </BrowserRouter>
-      </ThemeProvider>
-    </>
+          </BrowserRouter>
+        </ThemeProvider>
+      </>
     </>
   );
 }
