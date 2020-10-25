@@ -27,10 +27,13 @@ const unidades = [
     value: "lb",
   },
   {
-    value: "Kg",
+    value: "kg",
   },
   {
-    value: "litro",
+    value: "lt",
+  },
+  {
+    value: "g",
   },
 ];
 
@@ -42,10 +45,10 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: "8px solid #14274e",
+    border: "3px solid #14274e",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     outline: "none",
   },
   textField: {
@@ -57,6 +60,11 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px",
     justifyContent: "center",
     paddingLeft: "25%",
+  },
+
+  buttonUpload: {
+    margin: "20px",
+    justifyContent: "center",
   },
   typoField: {
     margin: "20px",
@@ -115,6 +123,7 @@ export default function TransitionsModal() {
             <div className={classes.textField}>
               <TextField
                 id="tipo"
+                name="tipo"
                 select
                 label="Tipo"
                 value={currency}
@@ -135,6 +144,7 @@ export default function TransitionsModal() {
             <div className={classes.textField}>
               <TextField
                 id="nombre"
+                name="nombre"
                 label="Nombre"
                 variant="outlined"
                 size="small"
@@ -144,6 +154,7 @@ export default function TransitionsModal() {
             <div className={classes.textField}>
               <TextField
                 id="precio"
+                name="precio"
                 label="Precio"
                 variant="outlined"
                 size="small"
@@ -155,6 +166,7 @@ export default function TransitionsModal() {
             <div className={classes.textField}>
               <TextField
                 id="peso"
+                name="peso"
                 label="Contenido Neto"
                 variant="outlined"
                 size="small"
@@ -165,6 +177,7 @@ export default function TransitionsModal() {
             <div className={classes.textField}>
               <TextField
                 id="unidad"
+                name="unidad"
                 select
                 label="Unidad"
                 value={unidadM}
@@ -185,6 +198,7 @@ export default function TransitionsModal() {
             <div className={classes.textField}>
               <TextField
                 id="descripcion"
+                name="descripcion"
                 label="Descripcion"
                 multiline
                 rows={2}
@@ -195,7 +209,18 @@ export default function TransitionsModal() {
               />
             </div>
 
-            {/*Descripcion*/}
+            {/*Img*/}
+            <div className={classes.buttonUpload}>
+              <Button variant="outlined" component="label">
+                Subir Imagen
+                <input
+                  type="file"
+                  style={{ display: "none", backgroundColor: "#394867" }}
+                />
+              </Button>
+            </div>
+
+            {/*Crear*/}
             <div className={classes.buttonField}>
               <Button variant="contained" color="primary">
                 Crear

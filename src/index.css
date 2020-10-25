@@ -1,7 +1,5 @@
 body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 .scroll-btn {
@@ -39,9 +37,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #c02c03;
+  color: #f1f6f9;
 }
 
 .banner {
-  width: auto;
+  width: 85vw;
+  max-width: 1170px;
 }

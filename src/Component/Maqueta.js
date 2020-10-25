@@ -229,9 +229,9 @@ export default function Maqueta(props) {
 
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
+              <ChevronRightIcon color="#fff" />
             ) : (
-              <ChevronLeftIcon />
+              <ChevronLeftIcon color="#fff" />
             )}
           </IconButton>
         </div>
