@@ -39,9 +39,21 @@ const useStyles = makeStyles((theme) => ({
     background: "#ea5455",
     textTransform: "capitalize",
   },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
 }));
 
-export default function Producto({ nombre, precio, peso, tipo }) {
+export default function Producto({
+  nombre,
+  precio,
+  peso,
+  tipo,
+  img,
+  unidad,
+  descripcion,
+}) {
   const classes = useStyles();
 
   const bull = <span className={classes.bullet}>•</span>;
@@ -60,13 +72,27 @@ export default function Producto({ nombre, precio, peso, tipo }) {
                 <MoreVertIcon />
               </IconButton>
             } */
+
             title={nombre}
           />
-          {/* <CardMedia className={classes.media} image="" title="" /> */}
 
-          <CardContent></CardContent>
+          {/*  <CardMedia
+            className={classes.media}
+            image="/static/images/cards/contemplative-reptile.jpg"
+            title="Contemplative Reptile"
+          /> */}
+
+          <CardContent>
+            <Typography color="textPrimary">
+              {`Precio: ${precio} CUP`}
+            </Typography>
+
+            <Typography color="textPrimary">
+              {`Contenido Neto: ${peso} ${unidad}`}
+            </Typography>
+          </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small">Ver mas</Button>
           </CardActions>
         </Card>
       </Box>

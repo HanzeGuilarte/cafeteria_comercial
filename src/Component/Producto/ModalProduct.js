@@ -9,9 +9,11 @@ import {
   MenuItem,
   Typography,
   Button,
+  IconButton,
 } from "@material-ui/core";
 import { ProductoContext } from "../../Context/ProductContext";
 import { IoMdAddCircle } from "react-icons/io";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 const currencies = [
   {
@@ -62,14 +64,21 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: "25%",
   },
 
-  buttonUpload: {
-    margin: "20px",
-    justifyContent: "center",
-  },
   typoField: {
     margin: "20px",
     justifyContent: "center",
     paddingLeft: "20%",
+  },
+
+  root: {
+    justifyContent: "center",
+    paddingLeft: "20%",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: "none",
   },
 }));
 
@@ -210,14 +219,25 @@ export default function TransitionsModal() {
             </div>
 
             {/*Img*/}
-            <div className={classes.buttonUpload}>
-              <Button variant="outlined" component="label">
-                Subir Imagen
+            <div className={classes.root}>
+              <Typography variant="h4" color="initial">
+                Subir foto
                 <input
+                  accept="image/*"
+                  className={classes.input}
+                  id="icon-button-file"
                   type="file"
-                  style={{ display: "none", backgroundColor: "#394867" }}
                 />
-              </Button>
+                <label htmlFor="icon-button-file">
+                  <IconButton
+                    color="primary"
+                    aria-label="upload picture"
+                    component="span"
+                  >
+                    <PhotoCamera />
+                  </IconButton>
+                </label>
+              </Typography>
             </div>
 
             {/*Crear*/}

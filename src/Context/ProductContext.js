@@ -1,4 +1,5 @@
 import React, { useState, createContext } from "react";
+import data from "../Context/localProducts";
 
 const ProductoContext = createContext();
 
@@ -9,7 +10,7 @@ function ProductProvider({ children }) {
   const [tipo, setTipo] = useState("primario");
   const [descripcion, setDescripcion] = useState("");
   const [img, setImg] = useState("");
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(data);
   const [filterProducts, setFilterProducts] = useState([]);
 
   const [openModal, setOpenModal] = useState(false);

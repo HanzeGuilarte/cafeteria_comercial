@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   Grid,
@@ -13,7 +13,6 @@ import Loading from "../Component/Loading";
 import ModalProduct from "../Component/Producto/ModalProduct";
 import Hero from "../Component/Hero";
 import Producto from "../Component/Producto/Producto";
-import data from "../Context/localProducts";
 
 const useStyles = makeStyles((theme) => ({
   grid: {
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductoPage() {
   const classes = useStyles();
-  const { loading } = React.useContext(ProductoContext);
+  const { loading, product } = useContext(ProductoContext);
 
   function valuetext(value) {
     return `${value} $`;
@@ -42,14 +41,13 @@ export default function ProductoPage() {
 
   return (
     <>
-      {/*  <Hero>
-       
-      </Hero> */}
+      <Hero>
+        <ModalProduct />
+      </Hero>
 
-      <ModalProduct />
       <Box my={2} variant="outlined">
         <Typography align="center" variant="h3" color="primary">
-          Productos
+          {`Productos: ${product.length}`}
         </Typography>
       </Box>
 
@@ -87,7 +85,6 @@ export default function ProductoPage() {
                 getAriaValueText={valuetext}
                 aria-labelledby="discrete-slider-always"
                 step={5}
-                marks=""
                 valueLabelDisplay="auto"
               />
             </Box>
@@ -96,8 +93,8 @@ export default function ProductoPage() {
       </Grid>
 
       <Grid container>
-        {data.map((product) => {
-          return <Producto key={product.id} {...product} />;
+        {product.map((producto) => {
+          return <Producto key={producto.id} {...producto} />;
         })}
       </Grid>
     </>
