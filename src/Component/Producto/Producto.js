@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     background: "#ea5455",
-    textTransform: "capitalize",
   },
   media: {
     height: 0,
@@ -55,6 +54,9 @@ export default function Producto({
   descripcion,
 }) {
   const classes = useStyles();
+
+  console.log()
+  console.log(`${nombre} + ${tipo} + ${precio} + ${peso} + ${unidad}`);
 
   const bull = <span className={classes.bullet}>•</span>;
   return (

@@ -3,12 +3,6 @@ import { useHistory } from "react-router-dom";
 import { Button, Grid } from "@material-ui/core";
 
 export default function HomePage() {
-  const history = useHistory();
-
-  const actionRender = async (e) => {
-    e.preventDefault();
-    history.push("/almacen");
-  };
   return (
     <>
       <Grid
