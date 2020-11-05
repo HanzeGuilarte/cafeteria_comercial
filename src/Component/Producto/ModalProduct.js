@@ -15,12 +15,14 @@ import { ProductoContext } from "../../Context/ProductContext";
 import { IoMdAddCircle } from "react-icons/io";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
-const currencies = [
+const tipos = [
   {
     value: "Primitivo",
+    label: "Primitivo",
   },
   {
     value: "Elaborado",
+    label: "Elaborado",
   },
 ];
 
@@ -29,7 +31,7 @@ const unidades = [
     value: "lb",
   },
   {
-    value: "kg",
+    value: "Kg",
   },
   {
     value: "lt",
@@ -85,21 +87,17 @@ const useStyles = makeStyles((theme) => ({
 export default function TransitionsModal() {
   const classes = useStyles();
 
-  const { openModal, handleOpenModal, handleCloseModal } = useContext(
-    ProductoContext
-  );
+  const {
+    producto: { nombre, tipoP, peso, unidad, descripcion, img },
 
-  const [currency, setCurrency] = React.useState("Primitivo");
-  const [unidadM, setUnidadM] = React.useState("Kg");
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    actProducto,
+    crearProducto,
+  } = useContext(ProductoContext);
 
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
-
-  const handleUnidad = (event) => {
-    setUnidadM(event.target.value);
-  };
-  console.log(openModal);
+  console.log(nombre);
 
   return (
     <div>
@@ -135,13 +133,13 @@ export default function TransitionsModal() {
                 name="tipo"
                 select
                 label="Tipo"
-                value={currency}
-                onChange={handleChange}
+                value={tipoP}
+                onChange={actProducto}
                 variant="outlined"
                 size="small"
                 fullWidth
               >
-                {currencies.map((option) => (
+                {tipos.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
                     {option.value}
                   </MenuItem>
@@ -157,9 +155,13 @@ export default function TransitionsModal() {
                 label="Nombre"
                 variant="outlined"
                 size="small"
+                value={nombre}
+                onChange={actProducto}
               />
             </div>
-            {/* Precio */}
+
+            {/* 
+            Precio
             <div className={classes.textField}>
               <TextField
                 id="precio"
@@ -169,7 +171,7 @@ export default function TransitionsModal() {
                 size="small"
                 placeholder="$"
               />
-            </div>
+            </div> */}
 
             {/*Peso */}
             <div className={classes.textField}>
@@ -179,6 +181,8 @@ export default function TransitionsModal() {
                 label="Contenido Neto"
                 variant="outlined"
                 size="small"
+                value={peso}
+                onChange={actProducto}
               />
             </div>
 
@@ -189,8 +193,8 @@ export default function TransitionsModal() {
                 name="unidad"
                 select
                 label="Unidad"
-                value={unidadM}
-                onChange={handleUnidad}
+                value={unidad}
+                onChange={actProducto}
                 variant="outlined"
                 size="small"
                 fullWidth
@@ -215,6 +219,8 @@ export default function TransitionsModal() {
                 variant="outlined"
                 size="small"
                 fullWidth
+                value={descripcion}
+                onChange={actProducto}
               />
             </div>
 
@@ -225,8 +231,11 @@ export default function TransitionsModal() {
                 <input
                   accept="image/*"
                   className={classes.input}
-                  id="icon-button-file"
+                  id="img"
+                  name="img"
                   type="file"
+                  value={img}
+                  onChange={actProducto}
                 />
                 <label htmlFor="icon-button-file">
                   <IconButton
@@ -242,7 +251,13 @@ export default function TransitionsModal() {
 
             {/*Crear*/}
             <div className={classes.buttonField}>
-              <Button variant="contained" color="primary">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                  crearProducto(nombre, tipoP, peso, unidad, descripcion, img);
+                }}
+              >
                 Crear
               </Button>
             </div>

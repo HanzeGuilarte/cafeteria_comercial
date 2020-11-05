@@ -55,9 +55,6 @@ export default function Producto({
 }) {
   const classes = useStyles();
 
-  console.log()
-  console.log(`${nombre} + ${tipo} + ${precio} + ${peso} + ${unidad}`);
-
   const bull = <span className={classes.bullet}>•</span>;
   return (
     <Grid className={classes.grid} item xs={12} md={4}>

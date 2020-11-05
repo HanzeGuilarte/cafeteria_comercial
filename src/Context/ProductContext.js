@@ -5,22 +5,27 @@ const ProductoContext = createContext();
 
 function ProductProvider({ children }) {
   /* VARIABLES DEL PRODUCTO */
-  const [nombre, setNombre] = useState("");
-  const [peso, setPeso] = useState("");
-  const [unidad, setUnidad] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [img, setImg] = useState("");
+
+  const [producto, setProducto] = React.useState({
+    nombre: "",
+    tipoP: "Primitivo",
+    peso: 0,
+    unidad: "Kg",
+    descripcion: "",
+    img: "",
+  });
 
   /* ARREGLO DE PRODUCTOS */
   const [product, setProduct] = useState([]);
   /* PRODUCTOS FILTRADOS */
   const [filterProducts, setFilterProducts] = useState([]);
   /*BOTONES PARA FILTRADO*/
-
   const [filter, setFilter] = React.useState({
     buscarPro: "",
     tipoPro: "Todo",
   });
+
+  const leo = "leo";
 
   /* ABRIR O CERRAR MODAL */
   const [openModal, setOpenModal] = useState(false);
@@ -46,6 +51,7 @@ function ProductProvider({ children }) {
     setFilter({ ...filter, [filtered]: filterValue });
   };
 
+  /* USE EFFECT PARA INICIALIZAR LAS VARIABLES */
   useEffect(() => {
     setLoading(false);
     setProduct(data);
@@ -55,6 +61,7 @@ function ProductProvider({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /* USE EFFECT PARA REALIZAR LOS FILTRADOS */
   React.useLayoutEffect(() => {
     let newProducts = [...product];
 
@@ -73,14 +80,30 @@ function ProductProvider({ children }) {
     setFilterProducts(newProducts);
   }, [filter, product]);
 
+  /* UPDATE PARA CREAR UN PRODUCTO */
+  const actProducto = (e) => {
+    const filtered = e.target.name;
+    const value = e.target.value;
+    let filterValue = value;
+
+    setProducto({ ...producto, [filtered]: filterValue });
+  };
+
+  /* CREAR PRODUCTO */
+
+  const crearProducto = (nombre, tipoP, peso, unidad, descripcion, img) => {
+    console.log(`${nombre} / ${tipoP} / ${peso} `);
+
+    /* let pro = { nombre, tipoP, peso, unidad, descripcion, img };
+
+    const newPro = [...product, pro];
+    setProduct(newPro); */
+  };
+
   return (
     <ProductoContext.Provider
       value={{
-        nombre,
-        peso,
-
-        descripcion,
-        img,
+        producto,
         product,
         filterProducts,
         loading,
@@ -89,6 +112,8 @@ function ProductProvider({ children }) {
         handleCloseModal,
         handleOpenModal,
         actFiltros,
+        actProducto,
+        crearProducto,
       }}
     >
       {children}

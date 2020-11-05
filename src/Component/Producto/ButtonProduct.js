@@ -5,7 +5,7 @@ import ModalProduct from "./ModalProduct";
 
 export default function ButtonProduct() {
   const { handleOpenModal, openModal } = useContext(ProductoContext);
-  console.log(openModal);
+
 
   /* const scrollBackToTop = () => {
     window.scrollTo({
