@@ -36,7 +36,7 @@ function ProductProvider({ children }) {
 
   /*Actualizar UI*/
 
-  const [updateUI, setUpdateUI] = useState(false); 
+  const [request, setRequest] = useState(true);
 
   ////////////////////////FUNCIONES////////////////////////////////////////////////
 
@@ -55,27 +55,30 @@ function ProductProvider({ children }) {
     const value = e.target.value;
     let filterValue = value;
 
+    console.log("LEO")
+
     setFilter({ ...filter, [filtered]: filterValue });
   };
 
   useEffect(() => {
     setLoading(false);
-    async function getProductAPI() {
-      let response = await axios.get(
-        `http://localhost:3000/api/v1/inventario/producto`
-      );
-      setProduct(response.data.Productos);
+
+    if (request) {
+      async function getProductAPI() {
+        let response = await axios.get(`${url}/producto`);
+        setProduct(response.data.Productos);
+      }
+      getProductAPI();
+      console.log("test");
+      setRequest(false);
     }
 
-    getProductAPI();
-    setFilterProducts(product);
     setLoading(true);
-  }, []);
+  }, [request]);
 
   /* USE EFFECT PARA REALIZAR LOS FILTRADOS */
   React.useLayoutEffect(() => {
     let newProducts = [...product];
-
     const { buscarPro, tipoPro } = filter;
     //
     if (tipoPro !== "Todo") {
@@ -89,7 +92,7 @@ function ProductProvider({ children }) {
       });
     }
     setFilterProducts(newProducts);
- /*    setUpdateUI(false); */
+    /*    setUpdateUI(false); */
   }, [filter, product]);
 
   /* UPDATE PARA CREAR UN PRODUCTO */
@@ -105,8 +108,6 @@ function ProductProvider({ children }) {
 
   async function crearProducto() {
     try {
-    
-
       const response = await axios.post(`${url}/producto/create`, {
         nombre: producto.nombre,
         tipoProducto: producto.tipoP,
@@ -118,7 +119,8 @@ function ProductProvider({ children }) {
       });
 
       setOpenModal(false);
-  
+      setRequest(true);
+
       return response;
     } catch (e) {
       console.log(e);
@@ -128,8 +130,9 @@ function ProductProvider({ children }) {
   async function eliminarProducto(id) {
     try {
       const response = await axios.delete(`${url}/producto/${id}`);
-     /*  setUpdateUI(true); */
+      /*  setUpdateUI(true); */
       console.log(response.data);
+      setRequest(true);
     } catch (e) {
       console.log(e);
     }

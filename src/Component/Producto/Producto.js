@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
   CardHeader,
@@ -59,6 +59,7 @@ export default function Producto({
   /* const bull = <span className={classes.bullet}>•</span>; */
   return (
     <Grid className={classes.grid} item xs={12} md={4}>
+      
       <Box my={2}>
         <Card className={classes.root} variant="outlined">
           <CardHeader
