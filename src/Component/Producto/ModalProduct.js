@@ -10,10 +10,14 @@ import {
   Typography,
   Button,
   IconButton,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@material-ui/core";
 import { ProductoContext } from "../../Context/ProductContext";
 import { IoMdAddCircle } from "react-icons/io";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const tipos = [
   {
@@ -48,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "white",
     border: "3px solid #14274e",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -57,23 +61,18 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     margin: "20px",
-    alignItems: "center",
-    justifyContent: "center",
   },
   buttonField: {
     margin: "20px",
-    justifyContent: "center",
     paddingLeft: "25%",
   },
 
   typoField: {
     margin: "20px",
-    justifyContent: "center",
     paddingLeft: "20%",
   },
 
   root: {
-    justifyContent: "center",
     paddingLeft: "20%",
     "& > *": {
       margin: theme.spacing(1),
@@ -89,15 +88,12 @@ export default function TransitionsModal() {
 
   const {
     producto: { nombre, tipoP, peso, unidad, descripcion, img },
-
     openModal,
     handleOpenModal,
     handleCloseModal,
     actProducto,
     crearProducto,
   } = useContext(ProductoContext);
-
-  console.log(nombre);
 
   return (
     <div>
@@ -129,8 +125,8 @@ export default function TransitionsModal() {
             {/*tipo */}
             <div className={classes.textField}>
               <TextField
-                id="tipo"
-                name="tipo"
+                id="tipoP"
+                name="tipoP"
                 select
                 label="Tipo"
                 value={tipoP}
@@ -159,19 +155,6 @@ export default function TransitionsModal() {
                 onChange={actProducto}
               />
             </div>
-
-            {/* 
-            Precio
-            <div className={classes.textField}>
-              <TextField
-                id="precio"
-                name="precio"
-                label="Precio"
-                variant="outlined"
-                size="small"
-                placeholder="$"
-              />
-            </div> */}
 
             {/*Peso */}
             <div className={classes.textField}>
@@ -249,13 +232,27 @@ export default function TransitionsModal() {
               </Typography>
             </div>
 
+            {/* Receta */}
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography className={classes.heading}>Accordion 1</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+
             {/*Crear*/}
             <div className={classes.buttonField}>
               <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
-                  crearProducto(nombre, tipoP, peso, unidad, descripcion, img);
+                  crearProducto();
                 }}
               >
                 Crear

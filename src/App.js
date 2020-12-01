@@ -26,7 +26,7 @@ import theme from "./Css/theme";
 function App() {
   /* const { sideOpen, authenticate } = React.useContext(SideContext);
 
-  console.log(sideOpen); */
+   */
   return (
     <>
       <>

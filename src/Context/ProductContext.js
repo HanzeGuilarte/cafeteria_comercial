@@ -1,5 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
-import data from "../Context/localProducts";
+
+import axios from "axios";
+import url from "../utils/URL";
 
 const ProductoContext = createContext();
 
@@ -13,6 +15,7 @@ function ProductProvider({ children }) {
     unidad: "Kg",
     descripcion: "",
     img: "",
+    receta: [],
   });
 
   /* ARREGLO DE PRODUCTOS */
@@ -25,13 +28,17 @@ function ProductProvider({ children }) {
     tipoPro: "Todo",
   });
 
-  const leo = "leo";
-
   /* ABRIR O CERRAR MODAL */
   const [openModal, setOpenModal] = useState(false);
 
   /* LOADING PARA EL BACK */
   const [loading, setLoading] = useState(true);
+
+  /*Actualizar UI*/
+
+  const [updateUI, setUpdateUI] = useState(false); 
+
+  ////////////////////////FUNCIONES////////////////////////////////////////////////
 
   /* FUNCIONES ABRIR O CERRAR MODAL */
   const handleOpenModal = () => {
@@ -51,14 +58,18 @@ function ProductProvider({ children }) {
     setFilter({ ...filter, [filtered]: filterValue });
   };
 
-  /* USE EFFECT PARA INICIALIZAR LAS VARIABLES */
   useEffect(() => {
     setLoading(false);
-    setProduct(data);
+    async function getProductAPI() {
+      let response = await axios.get(
+        `http://localhost:3000/api/v1/inventario/producto`
+      );
+      setProduct(response.data.Productos);
+    }
+
+    getProductAPI();
     setFilterProducts(product);
     setLoading(true);
-    return () => {};
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /* USE EFFECT PARA REALIZAR LOS FILTRADOS */
@@ -68,7 +79,7 @@ function ProductProvider({ children }) {
     const { buscarPro, tipoPro } = filter;
     //
     if (tipoPro !== "Todo") {
-      newProducts = newProducts.filter((item) => item.tipo === tipoPro);
+      newProducts = newProducts.filter((item) => item.tipoProducto === tipoPro);
     }
 
     if (buscarPro !== "") {
@@ -78,6 +89,7 @@ function ProductProvider({ children }) {
       });
     }
     setFilterProducts(newProducts);
+ /*    setUpdateUI(false); */
   }, [filter, product]);
 
   /* UPDATE PARA CREAR UN PRODUCTO */
@@ -91,14 +103,37 @@ function ProductProvider({ children }) {
 
   /* CREAR PRODUCTO */
 
-  const crearProducto = (nombre, tipoP, peso, unidad, descripcion, img) => {
-    console.log(`${nombre} / ${tipoP} / ${peso} `);
+  async function crearProducto() {
+    try {
+    
 
-    /* let pro = { nombre, tipoP, peso, unidad, descripcion, img };
+      const response = await axios.post(`${url}/producto/create`, {
+        nombre: producto.nombre,
+        tipoProducto: producto.tipoP,
+        descripcion: producto.descripcion,
+        unidad: producto.unidad,
+        peso: producto.peso,
+        image: producto.img,
+        recetas: producto.recetas,
+      });
 
-    const newPro = [...product, pro];
-    setProduct(newPro); */
-  };
+      setOpenModal(false);
+  
+      return response;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function eliminarProducto(id) {
+    try {
+      const response = await axios.delete(`${url}/producto/${id}`);
+     /*  setUpdateUI(true); */
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <ProductoContext.Provider
@@ -114,6 +149,7 @@ function ProductProvider({ children }) {
         actFiltros,
         actProducto,
         crearProducto,
+        eliminarProducto,
       }}
     >
       {children}

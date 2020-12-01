@@ -1,18 +1,18 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import {
   Card,
   CardHeader,
-  CardMedia,
   CardContent,
   CardActions,
-  Collapse,
   Typography,
-  Button,
   Grid,
   Box,
   Avatar,
+  IconButton,
 } from "@material-ui/core/";
+import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import { ProductoContext } from "../../Context/ProductContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,16 +46,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Producto({
   nombre,
-  precio,
   peso,
-  tipo,
+  tipoProducto,
   img,
   unidad,
   descripcion,
+  _id,
 }) {
   const classes = useStyles();
+  const { eliminarProducto } = React.useContext(ProductoContext);
 
-  const bull = <span className={classes.bullet}>•</span>;
+  /* const bull = <span className={classes.bullet}>•</span>; */
   return (
     <Grid className={classes.grid} item xs={12} md={4}>
       <Box my={2}>
@@ -63,35 +64,28 @@ export default function Producto({
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" className={classes.avatar}>
-                {tipo.charAt(0)}
+                {tipoProducto.charAt(0)}
               </Avatar>
             }
-            /* action={
-              <IconButton aria-label="settings">
-                <MoreVertIcon />
-              </IconButton>
-            } */
-
             title={nombre}
           />
 
-          {/*  <CardMedia
-            className={classes.media}
-            image="/static/images/cards/contemplative-reptile.jpg"
-            title="Contemplative Reptile"
-          /> */}
-
           <CardContent>
-            <Typography color="textPrimary">
-              {`Precio: ${precio} CUP`}
-            </Typography>
-
             <Typography color="textPrimary">
               {`Contenido Neto: ${peso} ${unidad}`}
             </Typography>
+
+            <Typography color="textPrimary">{descripcion}</Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Ver mas</Button>
+            <IconButton
+              onClick={() => {
+                eliminarProducto(_id);
+              }}
+              aria-label="add to favorites"
+            >
+              <DeleteForeverRoundedIcon />
+            </IconButton>
           </CardActions>
         </Card>
       </Box>

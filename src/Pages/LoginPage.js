@@ -16,7 +16,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { SideContext } from "../Context/InitialContext";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import ButtonWait from "../Component/ButtonWait";
-import Image from '../Images/cook1.jpg'
+import Image from "../Images/cook1.jpg";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -27,8 +27,6 @@ function Copyright() {
     </Typography>
   );
 }
-
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -165,23 +163,5 @@ export default function LoginPage() {
         </Box>
       </Container>
     </Grid>
-
-    /*     <div>
-      <ValidatorForm
-                
-                onSubmit={handleSubmit}
-                onError={errors => console.log(errors)}
-            >
-                <TextValidator
-                    label="Username"
-                    onChange={handleChange}
-                    name="username"
-                    value={username}
-                    validators={['required', 'isEmail']}
-                    errorMessages={['this field is required', 'email is not valid']}
-                />
-                <Button type="submit">Submit</Button>
-            </ValidatorForm>
-    </div> */
   );
 }
