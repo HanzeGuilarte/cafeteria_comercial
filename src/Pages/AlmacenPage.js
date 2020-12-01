@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 export default function AlmacenPage() {
-    return (
+
+    return (        
         <div>
-            Hello from Almacen
+            <h1>Almacen CRUD</h1>    
         </div>
     )
 }

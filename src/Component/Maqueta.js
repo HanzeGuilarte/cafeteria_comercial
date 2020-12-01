@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
@@ -12,10 +12,8 @@ import {
   IconButton,
   ListItem,
   ListItemIcon,
-  ListItemText,
   CssBaseline,
   Collapse,
-  Box,
   Menu,
   MenuItem,
 } from "@material-ui/core";
@@ -23,8 +21,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import KitchenIcon from "@material-ui/icons/Kitchen";
@@ -35,7 +32,6 @@ import TrendingFlatIcon from "@material-ui/icons/TrendingFlat";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import StarBorder from "@material-ui/icons/StarBorder";
- 
 
 const drawerWidth = 240;
 
@@ -81,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    background: "#14274e",
   },
   drawerClose: {
     transition: theme.transitions.create("width", {
@@ -92,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9) + 1,
     },
+    background: "#14274e",
   },
   toolbar: {
     display: "flex",
@@ -115,14 +113,14 @@ const useStyles = makeStyles((theme) => ({
   },
   principalItem: {
     "&:hover": {
-      background: "#f5f5f5",
+      background: "#9ba4b4",
     },
   },
 }));
 
 export default function Maqueta(props) {
   //Variables
-  const history = useHistory();
+
   const { children } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -133,10 +131,6 @@ export default function Maqueta(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   //Funciones
-
-  const redirectPage = () => {
-    history.push("/almacen");
-  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -209,6 +203,7 @@ export default function Maqueta(props) {
 
       <Drawer
         variant="permanent"
+        color="primary"
         className={clsx(classes.drawer, {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
@@ -305,7 +300,7 @@ export default function Maqueta(props) {
                 component="a"
                 href="/ipv"
                 button
-                className={classes.nested}
+                className={`${classes.nested} ${classes.principalItem}`}
               >
                 <ListItemIcon>
                   <StarBorder color="secondary" fontSize="small" />
@@ -317,7 +312,7 @@ export default function Maqueta(props) {
 
               <ListItem
                 button
-                className={classes.nested}
+                className={`${classes.nested} ${classes.principalItem}`}
                 component="a"
                 href="/salario"
               >
@@ -331,7 +326,7 @@ export default function Maqueta(props) {
 
               <ListItem
                 button
-                className={classes.nested}
+                className={`${classes.nested} ${classes.principalItem}`}
                 component="a"
                 href="/analisis"
               >

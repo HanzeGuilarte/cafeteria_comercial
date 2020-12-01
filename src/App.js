@@ -17,7 +17,9 @@ import AnalisisPage from "./Pages/AnalisisPage";
 import SalarioPage from "./Pages/SalarioPage";
 import ElaboracionPage from "./Pages/ElaboracionPage";
 import ProductPage from "./Pages/ProductoPage";
+import TurnoPage from './Pages/TurnoPage';
 import Error from "./Pages/Error";
+import RegisterPage from "./Pages/RegisterPage";
 import { SideContext } from "./Context/InitialContext";
 import Maqueta from "./Component/Maqueta";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -30,35 +32,37 @@ function App() {
   return (
     <>
       <>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <Switch>
+        <ThemeProvider theme={theme}>
+          <BrowserRouter>
             <Switch>
-              <Route exact path="/" component={LoginPage} />
-              <Maqueta>
-                <Switch>
-                  <Route exact path="/home" component={HomePage} />
-                  <Route exact path="/almacen" component={AlmacenPage} />
-                  <Route
-                    exact
-                    path="/elaboracion"
-                    component={ElaboracionPage}
-                  />
-                  <Route exact path="/ipv" component={IpvPage} />
-                  <Route exact path="/producto" component={ProductPage} />
-                  <Route exact path="/salario" component={SalarioPage} />
-                  <Route exact path="/trazas" component={TrazasPage} />
-                  <Route exact path="/usuario" component={UsuarioPage} />
-                  <Route exact path="/analisis" component={AnalisisPage} />
-                  <Route exact path="/ventas" component={VentasPage} />
-                  <Route exact path="/error" component={Error} />
-                </Switch>
-              </Maqueta>
+              <Switch>
+                <Route exact path="/" component={LoginPage} />
+                <Route exact path="/register" component={RegisterPage} />
+                <Maqueta>
+                  <Switch>
+                    <Route exact path="/home" component={HomePage} />
+                    <Route exact path="/almacen" component={AlmacenPage} />
+                    <Route
+                      exact
+                      path="/elaboracion"
+                      component={ElaboracionPage}
+                    />
+                    <Route exact path="/ipv" component={IpvPage} />
+                    <Route exact path="/producto" component={ProductPage} />
+                    <Route exact path="/salario" component={SalarioPage} />
+                    <Route exact path="/trazas" component={TrazasPage} />
+                    <Route exact path="/usuario" component={UsuarioPage} />
+                    <Route exact path="/analisis" component={AnalisisPage} />
+                    <Route exact path="/ventas" component={VentasPage} />
+                    <Route exact path="/turno" component={TurnoPage} />
+                    <Route exact path="/error" component={Error} />
+                  </Switch>
+                </Maqueta>
+              </Switch>
             </Switch>
-          </Switch>
-        </BrowserRouter>
-      </ThemeProvider>
-    </>
+          </BrowserRouter>
+        </ThemeProvider>
+      </>
     </>
   );
 }

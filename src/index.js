@@ -4,10 +4,19 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { SideProvider } from "./Context/InitialContext";
+import { ProductProvider } from "./Context/ProductContext";
+import {TurnoProvider } from "./Context/TurnoContext";
+import {LoginProvider} from './Context/LoginContext';
 
 ReactDOM.render(
   <SideProvider>
-    <App />
+    <TurnoProvider>
+    <LoginProvider>
+    <ProductProvider>
+      <App />
+    </ProductProvider>
+    </LoginProvider>
+    </TurnoProvider>
   </SideProvider>,
 
   document.getElementById("root")
