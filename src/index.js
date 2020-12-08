@@ -5,18 +5,18 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { SideProvider } from "./Context/InitialContext";
 import { ProductProvider } from "./Context/ProductContext";
-import {TurnoProvider } from "./Context/TurnoContext";
-import {LoginProvider} from './Context/LoginContext';
+import { TurnoProvider } from "./Context/TurnoContext";
+import { LoginProvider } from "./Context/LoginContext";
 
 ReactDOM.render(
   <SideProvider>
-    <TurnoProvider>
     <LoginProvider>
-    <ProductProvider>
-      <App />
-    </ProductProvider>
+      <ProductProvider>
+        <TurnoProvider>
+          <App />
+        </TurnoProvider>
+      </ProductProvider>
     </LoginProvider>
-    </TurnoProvider>
   </SideProvider>,
 
   document.getElementById("root")

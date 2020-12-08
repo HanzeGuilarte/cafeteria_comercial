@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
 
-import axios from "axios";
+import axios from 'axios';
 import url from "../utils/URL";
 
 const ProductoContext = createContext();
@@ -54,8 +54,6 @@ function ProductProvider({ children }) {
     const filtered = e.target.name;
     const value = e.target.value;
     let filterValue = value;
-
-    console.log("LEO")
 
     setFilter({ ...filter, [filtered]: filterValue });
   };

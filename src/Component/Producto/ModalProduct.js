@@ -89,7 +89,6 @@ export default function TransitionsModal() {
 
   const {
     producto: { nombre, tipoP, peso, unidad, descripcion, img },
-
     openModal,
     handleOpenModal,
     handleCloseModal,
